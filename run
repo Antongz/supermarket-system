@@ -1,0 +1,1 @@
+g++ -std=c++11 -o mystore Stock.h Stock.cpp Store.h Store.cpp Menu.h Menu.cpp main_Store.cpp

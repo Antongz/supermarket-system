@@ -11,12 +11,12 @@ class Menu
 
 public:
     Menu();
-    void displayMenu();
+    void displayMenu(); //display the menu
 
-    bool menuSelection( int option, Store* shop );
-    void addStockInformation( Store* shop );
-    void removeStock( Store* shop );
-    void displayStock( Store* shop );
+    bool menuSelection( int option, Store* shop ); //select the function frome the menu
+    void addStockInformation( Store* shop );  //add the stock by its information
+    void removeStock( Store* shop );          //remove stock from the store
+    void displayStock( Store* shop );         // display the stock in the store
 };
 
 #endif

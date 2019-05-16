@@ -7,10 +7,11 @@
 
 class Stock
 {
+
 private:
-    unsigned int code_number_;
-    unsigned int price_;
-    std::string stock_name_;
+    unsigned int code_number_;  // stocks are allocated by code number on creation.
+    unsigned int price_;        // stocks are allocated by price on creation.
+    std::string stock_name_;    // stocks are allocated by stock name on creation.
 
 public:
     Stock() = default;
@@ -20,32 +21,17 @@ public:
         price_{ price }
     {}
 
-    std::string stock_nameIs() const
-    {
-        return stock_name_;
-    }
-    unsigned int code_numberIs() const
-    {
-        return code_number_;
-    }
-    unsigned int priceIs() const
-    {
-        return price_;
-    }
-    void updateStock_name( const std::string& stock_name )
-    {
-        stock_name_ = stock_name;
-    }
-    void updateCode_number( unsigned int code_number )
-    {
-        code_number_ = code_number;
-    }
-    void updatePrice( unsigned int price )
-    {
-        price_ = price;
-    }
+    std::string stock_nameIs() const;     //return the stock name
+    unsigned int code_numberIs() const;   //return the stock code number
+    unsigned int priceIs() const;         //return the stock price
+
+    void updateStock_name( const std::string& stock_name ); //update the stock name
+    void updateCode_number( unsigned int code_number );     //update the stock code number
+    void updatePrice( unsigned int price );                 //update the stock price
+
 };
 
+// operator to compare the stock information that user enter in a right formal
 bool operator==( const Stock& first, const Stock& other );
 bool operator!=( const Stock& first, const Stock& other );
 std::ostream& operator<<( std::ostream& out, const Stock& stock );

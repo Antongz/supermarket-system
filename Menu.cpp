@@ -113,6 +113,7 @@ bool Menu::menuSelection( int option, Store* shop )
     }
     return true;
 }
+
 //enter goods information
 void Menu::addStockInformation( Store* shop )
 {
@@ -137,6 +138,7 @@ void Menu::addStockInformation( Store* shop )
     Stock stock( stock_name, code_number, price );
     shop->addStock( stockcode, stock );
 }
+
 //remove goods from the store
 void Menu::removeStock( Store* shop )
 {
@@ -157,6 +159,7 @@ void Menu::removeStock( Store* shop )
     std::getline( std::cin, stockcode );
     shop->removeStock( stockcode );
 }
+
 //display goods information on the console
 void Menu::displayStock( Store* shop )
 {

@@ -4,12 +4,12 @@
 
 int main()
 {
-    Store shop;
-    Menu Menu;
+    Store shop; //create a store 'shop'
+    Menu Menu;  //create a menu 'menu'
     std::cout << "Welcome to the Supermarket!\n";
-    Menu.displayMenu();
+    Menu.displayMenu(); //display the menu
 
-    int option = 0;
+    int option = 0; //set the defalt option
     do
     {
         std::cout << "\nChoose an option from the menu :";

@@ -7,9 +7,9 @@ class Stock
 {
 
 private:
-    unsigned int code_number_;
-    unsigned int price_;
-    string stock_name_;
+    unsigned int code_number_;  // stocks are allocated by code number on creation.
+    unsigned int price_;  // stocks are allocated by price on creation.
+    string stock_name_;  // stocks are allocated by stock name on creation.
 
 public:
     //default constructors
@@ -21,32 +21,39 @@ public:
         price_{ price }
     {}
 
+    //return the stock name
     string stock_nameIs() const
     {
         return stock_name_;
     }
+    //return the stock code number
     unsigned int code_numberIs() const
     {
         return code_number_;
     }
+    //return the stock price
     unsigned int priceIs() const
     {
         return price_;
     }
+    //update the stock name
     void updateStock_name( const string& stock_name )
     {
         stock_name_ = stock_name;
     }
+    //update the stock code number
     void updateCode_number( unsigned int code_number )
     {
         code_number_ = code_number;
     }
+    //update the stock price
     void updatePrice( unsigned int price )
     {
         price_ = price;
     }
 };
 
+// operator to compare the stock information that user enter in a right formal
 bool operator==( const Stock& first, const Stock& other )
 {
     return ( first.stock_nameIs()  == other.stock_nameIs()  &&
@@ -61,7 +68,7 @@ bool operator!=( const Stock& first, const Stock& other )
              first.priceIs() != other.priceIs() );
 }
 
-
+//output stocks name,code number and price
 ostream& operator<<( ostream& out, const Stock& stock )
 {
     out << setw( 15 ) << "Stock name: " << stock.stock_nameIs() << '\n'
@@ -74,11 +81,12 @@ ostream& operator<<( ostream& out, const Stock& stock )
 class Store
 {
 public:
+    //store elements in the store by using map
     typedef unordered_multimap<string, Stock> StoreMap;
     typedef const unordered_multimap<string, Stock> StoreMapConst;
 
 private:
-    StoreMap stocks_;
+    StoreMap stocks_;  //creat the storemap
 
 public:
     Store() = default;
@@ -96,18 +104,21 @@ public:
      }
 
     //find a stock by its information
+    //return corresponding goods information
     Stock* findStock( const string& stockcode )
      {
         auto it = stocks_.find( stockcode );
         return &it->second;
      }
 
-    //count the total number of stocks
+    //dispaly the total stocks in the store
+    //return number of goods
     size_t totalStocks() const
      {
         return stocks_.size();
      }
 
+    //display the stock information in the store
     void displayStore()
      {
         StoreMapConst::const_iterator it = stocks_.begin();
@@ -160,6 +171,7 @@ public:
           }
           }
      }
+
 /*
     //user menu
     void userMenu()
@@ -171,6 +183,53 @@ public:
         cout << "3: Display the list of all stocks\n";
         cout << "4: Exit the Store and Quit\n";
         cout << "================================================\n";
+
+        int command;
+        cout << "\nChoose an option from the menu ";
+        cin >> command;
+        Store* shop;
+        switch( static_cast<unsigned int>(command) )
+          {
+        case 0:
+          {
+            cout.flush();
+            system("clear");
+            welcomeMenu();
+            break;
+          }
+        case 2:
+          {
+            displayStock( shop );
+            break;
+          }
+
+        case 3:
+          {
+            unsigned int numStocks = shop->totalStocks();
+            if( numStocks > 0 )
+               {
+                shop->displayStore();
+               }
+            else
+               {
+                cout << "\nThere are no items to display.\n";
+               }
+            break;
+          }
+
+        case 4:
+          {
+            system("clear");
+            exit(0);
+            break;
+          }
+        default:
+          {
+            cout << "\nInvalid selection please try again.\n";
+            break;
+          }
+          }
+     }
 */
     //display the menu main function
     void displayMenu()
@@ -285,6 +344,7 @@ public:
      }
 
     //add a stock to the store
+    //enter goods information
     void addStockInformation( Store* shop )
      {
         unsigned int code_number = 0;
@@ -331,6 +391,7 @@ public:
      }
 
     //display the stock detail
+    //display goods information on the console
     void displayStock( Store* shop )
      {
         unsigned int numStocks = shop->totalStocks();
@@ -358,16 +419,40 @@ public:
             cout << "\nStock was not found.\n";
           }
       }
+/*
+    void runAdmin()
+     {
+        Store shop;
+        int option = 0;
+        do
+          {
+            cout << "\nChoose an option from the menu :";
+            cin >> option;
+            if( cin.fail() )
+               {
+                cout << "\nPlease enter an integer\n";
+                cin.clear();
+                cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+               }
+            cout << '\n';
+          }
+
+        while( menuSelection( option, &shop ) );
+        cout << "\nPress any key and enter to quit.\n";
+        cin.get();
+      }
+*/
 };
 
 int main()
 {
-    Store shop;
-    Menu Menu;
+    Store shop;  //create a store 'shop'
+    Menu Menu;  //create a menu 'menu'
     cout << "Welcome to the Supermarket!\n";
-    Menu.welcomeMenu();
+    Menu.welcomeMenu();  //display the welcome menu
+    //Menu.runAdmin();
 
-    int option = 0;
+    int option = 0;  //set the defalt option
     do
     {
         cout << "\nChoose an option from the menu ";
@@ -386,4 +471,5 @@ int main()
     cin.get();
     return 0;
 }
+
 

@@ -2,24 +2,34 @@
 #define MENU_H
 
 #include "Store.h"
+#include "Discout_stock.h"
 #include <map>
+#include <fstream>
 #include <limits>
 
+using namespace std;
 
 class Menu
 {
 
+private:
+    float price;
+    float finalprice;
+    float discout;
+    int option1;
+    string pass;
+    string password;
+
 public:
     Menu();
-    string password;
-    void displayMenu();
     void welcomeMenu();
+    void displayMenu(); //display the menu
 
-    bool menuSelection( int option, Store* shop );
-    void addStockInformation( Store* shop );
-    void removeStock( Store* shop );
-    void displayStock( Store* shop );
-
+    bool menuSelection( int option, Store* shop ); //select the function frome the menu
+    void addStockInformation( Store* shop );  //add the stock by its information
+    void removeStock( Store* shop );          //remove stock from the store
+    void displayStock( Store* shop );         // display the stock in the store
+    ~Menu();
 };
 
 #endif

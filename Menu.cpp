@@ -1,3 +1,4 @@
+
 #include "Menu.h"
 #include <vector>
 #include <string>
@@ -7,7 +8,7 @@ using namespace std;
 
 Menu::Menu()
 {
-    password = "ye123";
+    password = "admin";
 }
 
 //welcome
@@ -20,31 +21,35 @@ void Menu::welcomeMenu()
     cout << "\033[35;5m       ʕ•ᴥ•ʔ Please choose the options ʕ•ᴥ•ʔ       \033[0m \n";
     cout << "\033[35;1m ================================================ \033[0m \n";
 
-    int option1;
-    cout << "\n ʕ•ᴥ•ʔ Choose an option from the menu ʕ•ᴥ•ʔ ";
+    cout << "\nChoose an option from the menu ";
     cin >> option1;
-    switch (option1) {
-    case 1: {
-        cout << " ʕ•ᴥ•ʔ Please enter the password ʕ•ᴥ•ʔ " << endl;
-        string pass;
+    switch (option1)
+    {
+    case 1:
+    {
+        cout << "Please enter the password: ";
         cin >> pass;
-        if (pass == password){
+        if (pass == password)
+        {
             cout.flush();
             system("clear");
             displayMenu();
-        }else{
-            cout << "Please try again!" << endl;
+        }
+        else
+        {
+            cout << "Password incorrect, please try it again!" << endl;
             welcomeMenu();
-           }
+        }
         break;
-     }
+    }
 
-    case 2: {
+    case 2:
+    {
         system("clear");
         exit(0);
         break;
-     }
-     }
+    }
+    }
 }
 
 //display the menu main function
@@ -72,13 +77,13 @@ bool Menu::menuSelection( int option, Store* shop )
     {
 
     case 0:
-     {
+    {
         cout.flush();
         system("clear");
 
         welcomeMenu();
         break;
-     }
+    }
 
     case 1:
     {
@@ -163,10 +168,12 @@ bool Menu::menuSelection( int option, Store* shop )
     return true;
 }
 
+//enter goods information
 void Menu::addStockInformation( Store* shop )
 {
-    unsigned int code_number = 0;
-    unsigned int price = 0;
+    price = 0;
+    finalprice = 0;
+    discout = 0;
     string stock_name, stockcode;
 
     cin.ignore();
@@ -174,19 +181,22 @@ void Menu::addStockInformation( Store* shop )
     cout << "Please enter the stocks barcode: ";
     getline( cin, stockcode );
 
-    cout << "Please enter the stocks  name: ";
+    cout << "Please enter the stocks name: ";
     getline( cin, stock_name );
-
-    cout << "Please enter the stocks code number: ";
-    cin >> code_number;
 
     cout << "Please enter the stocks price: ";
     cin >> price;
 
-    Stock stock( stock_name, code_number, price );
+    cout << "Please enter the stocks discout: ";
+    cin >> discout;
+    finalprice = discout * price;
+
+    Discout_stock Discout_stock(discout);
+    Stock stock( stock_name, finalprice );
     shop->addStock( stockcode, stock );
 }
 
+//remove goods from the store
 void Menu::removeStock( Store* shop )
 {
     unsigned int numStocks = shop->totalStocks();
@@ -207,6 +217,7 @@ void Menu::removeStock( Store* shop )
     shop->removeStock( stockcode );
 }
 
+//display goods information on the console
 void Menu::displayStock( Store* shop )
 {
     unsigned int numStocks = shop->totalStocks();
@@ -233,4 +244,9 @@ void Menu::displayStock( Store* shop )
     {
         cout << "\nStock was not found.\n";
     }
+}
+
+Menu::~Menu()
+{
+
 }

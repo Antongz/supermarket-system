@@ -35,3 +35,8 @@ void Store::displayStore()
                   << it->second << std::endl;
     }
 }
+
+Store::~Store()
+{
+
+}

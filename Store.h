@@ -21,6 +21,7 @@ public:
     Stock* findStock( const std::string& stockcode ); //find stock
     std::size_t totalStocks() const; //dispaly the total stocks in the store
     void displayStore(); //display the stock information in the store
+    ~Store();
 
 };
 

@@ -3,31 +3,30 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <iomanip>
+
 
 class Stock
 {
 
 private:
-    unsigned int code_number_;  // stocks are allocated by code number on creation.
-    unsigned int price_;        // stocks are allocated by price on creation.
+    float price_;        // stocks are allocated by price on creation.
     std::string stock_name_;    // stocks are allocated by stock name on creation.
+
 
 public:
     Stock() = default;
-    Stock( std::string stock_name, unsigned int code_number, unsigned int price ) :
+    Stock( std::string stock_name, float price ) :
         stock_name_{ std::move( stock_name ) },
-        code_number_{ code_number },
         price_{ price }
     {}
 
     std::string stock_nameIs() const;     //return the stock name
-    unsigned int code_numberIs() const;   //return the stock code number
-    unsigned int priceIs() const;         //return the stock price
+    float priceIs() const;         //return the stock price
 
     void updateStock_name( const std::string& stock_name ); //update the stock name
-    void updateCode_number( unsigned int code_number );     //update the stock code number
-    void updatePrice( unsigned int price );                 //update the stock price
+    void updatePrice( float price );                 //update the stock price
 
 };
 

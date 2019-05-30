@@ -1,31 +1,33 @@
 #include "Menu.h"
 #include <vector>
 
+using namespace std;
 
 int main()
 {
-    Store shop; //create a store 'shop'
-    Menu Menu;  //create a menu 'menu'
-    std::cout << "Welcome to the Supermarket!\n";
-    Menu.displayMenu(); //display the menu
+    Store shop;
+    Menu Menu;
+    cout << "         \033[41;1m Welcome to the Supermarket! \033[0m\n";
+    Menu.welcomeMenu();
+    //Menu.displayMenu();
 
-    int option = 0; //set the defalt option
+    int option = 0;
     do
     {
-        std::cout << "\nChoose an option from the menu :";
-        std::cin >> option;
-        if( std::cin.fail() )
+        cout << "\nChoose an option from the menu :";
+        cin >> option;
+        if( cin.fail() )
         {
-            std::cout << "\nPlease enter an integer\n";
-            std::cin.clear();
-            std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+            cout << "\nPlease enter an integer\n";
+            cin.clear();
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
         }
-        std::cout << '\n';
+        cout << '\n';
     }
 
     while( Menu.menuSelection( option, &shop ) );
-    std::cout << "\nPress any key and enter to quit.\n";
-    std::cin.get();
+    cout << "\nPress any key and enter to quit.\n";
+    cin.get();
+
     return 0;
 }
-

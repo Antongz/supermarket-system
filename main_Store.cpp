@@ -7,7 +7,12 @@ int main()
 {
     Store shop;
     Menu Menu;
-    cout << "         \033[41;1m Welcome to the Supermarket! \033[0m\n";
+    //cout << "         \033[41;1m Welcome to the Supermarket! \033[0m\n";
+    cout << "*    *    *  ****  *     ****  ****      * *      ****" << endl;
+    cout << " *   *   *   *     *     *     *  *     * * *     *   " << endl;
+    cout << "  *  *  *    ****  *     *     *  *    *  *  *    ****" << endl;
+    cout << "   * * *     *     *     *     *  *   *   *   *   *   " << endl;
+    cout << "    * *      ****  ****  ****  ****  *    *    *  ****" << endl;
     Menu.welcomeMenu();
     //Menu.displayMenu();
 

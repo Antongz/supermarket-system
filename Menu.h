@@ -11,6 +11,7 @@ class Menu
 
 public:
     Menu();
+    string password;
     void displayMenu();
     void welcomeMenu();
 

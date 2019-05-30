@@ -7,7 +7,7 @@ using namespace std;
 
 Menu::Menu()
 {
-
+    password = "ye123";
 }
 
 //welcome
@@ -19,15 +19,23 @@ void Menu::welcomeMenu()
     cout << "\033[35;1m |  ( • •)~ 2: Exit the Store and Quit ~(• • )  | \033[0m \n\n";
     cout << "\033[35;5m       ʕ•ᴥ•ʔ Please choose the options ʕ•ᴥ•ʔ       \033[0m \n";
     cout << "\033[35;1m ================================================ \033[0m \n";
-    //cout << "\033[41;1mRed Underline Text\033[0m" << endl;
+
     int option1;
-    cout << "\nChoose an option from the menu ";
+    cout << "\n ʕ•ᴥ•ʔ Choose an option from the menu ʕ•ᴥ•ʔ ";
     cin >> option1;
     switch (option1) {
     case 1: {
-        cout.flush();
-        system("clear");
-        displayMenu();
+        cout << " ʕ•ᴥ•ʔ Please enter the password ʕ•ᴥ•ʔ " << endl;
+        string pass;
+        cin >> pass;
+        if (pass == password){
+            cout.flush();
+            system("clear");
+            displayMenu();
+        }else{
+            cout << "Please try again!" << endl;
+            welcomeMenu();
+           }
         break;
      }
 

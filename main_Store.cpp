@@ -19,7 +19,7 @@ int main()
     int option = 0;
     do
     {
-        cout << "\nChoose an option from the menu :";
+        cout << "\n ʕ•ᴥ•ʔ Choose an option from the menu ʕ•ᴥ•ʔ:";
         cin >> option;
         if( cin.fail() )
         {

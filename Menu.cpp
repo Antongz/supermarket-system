@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
-
 using namespace std;
 
 Menu::Menu()
@@ -11,18 +10,50 @@ Menu::Menu()
 
 }
 
+//welcome
+void Menu::welcomeMenu()
+{
+    cout << "\033[35;1m ================================================ \033[0m \n";
+    cout << "\033[35;5m       ʕ•ᴥ•ʔ Please choose the options ʕ•ᴥ•ʔ       \033[0m \n\n";
+    cout << "\033[35;1m |         ( • •)~ 1: Admin Menu ~(• • )        | \033[0m \n";
+    cout << "\033[35;1m |  ( • •)~ 2: Exit the Store and Quit ~(• • )  | \033[0m \n\n";
+    cout << "\033[35;5m       ʕ•ᴥ•ʔ Please choose the options ʕ•ᴥ•ʔ       \033[0m \n";
+    cout << "\033[35;1m ================================================ \033[0m \n";
+    //cout << "\033[41;1mRed Underline Text\033[0m" << endl;
+    int option1;
+    cout << "\nChoose an option from the menu ";
+    cin >> option1;
+    switch (option1) {
+    case 1: {
+        cout.flush();
+        system("clear");
+        displayMenu();
+        break;
+     }
+
+    case 2: {
+        system("clear");
+        exit(0);
+        break;
+     }
+     }
+}
+
 //display the menu main function
 void Menu::displayMenu()
 {
-    std::cout << "================================================\n";
-    std::cout << "1: Add a stock to the store\n";
-    std::cout << "2: Remove stock from the store\n";
-    std::cout << "3: Display the number of stocks in the Store\n";
-    std::cout << "4: Find a stock by its information\n";
-    std::cout << "5: Display the list of all stocks\n";
-    std::cout << "6: Display menu option\n";
-    std::cout << "7: Exit the Store and quit\n";
-    std::cout << "================================================\n";
+    cout << "\033[35;1m ================================================ \033[0m \n";
+    cout << "\033[35;5m        ʕ•ᴥ•ʔ Please choose the options ʕ•ᴥ•ʔ      \033[0m \n\n";
+    cout << "\033[35;1m |       0: Back to the welcome menu            | \033[0m \n";
+    cout << "\033[35;1m |       1: Add a stock to the store            | \033[0m \n";
+    cout << "\033[35;1m |       2: Remove stock from the store         | \033[0m \n";
+    cout << "\033[35;1m |       3: Display the number of stocks        | \033[0m \n";
+    cout << "\033[35;1m |       4: Find a stock by its information     | \033[0m \n";
+    cout << "\033[35;1m |       5: Display the list of all stocks      | \033[0m \n";
+    cout << "\033[35;1m |       6: Display menu option                 | \033[0m \n";
+    cout << "\033[35;1m |       7: Exit the Store and quit             | \033[0m \n\n";
+    cout << "\033[35;5m        ʕ•ᴥ•ʔ Please choose the options ʕ•ᴥ•ʔ      \033[0m \n";
+    cout << "\033[35;1m ================================================ \033[0m \n";
 }
 
 //select the funcion by using switch case
@@ -31,16 +62,26 @@ bool Menu::menuSelection( int option, Store* shop )
 
     switch( static_cast<unsigned int>(option) )
     {
+
+    case 0:
+     {
+        cout.flush();
+        system("clear");
+
+        welcomeMenu();
+        break;
+     }
+
     case 1:
     {
         addStockInformation( shop );
 
-        std::cout.flush();
+        cout.flush();
         system( "clear" );
 
         displayMenu();
 
-        std::cout << "\nYou have entered a stock into the store.\n";
+        cout << "\nYou have entered a stock into the store.\n";
         break;
     }
     case 2:
@@ -49,16 +90,16 @@ bool Menu::menuSelection( int option, Store* shop )
         {
             removeStock( shop );
 
-            std::cout.flush();
+            cout.flush();
             system( "clear" );
 
             displayMenu();
 
-            std::cout << "\nYou have removed a stock from the store.\n";
+            cout << "\nYou have removed a stock from the store.\n";
         }
         else
         {
-            std::cout << "\nThere are no stocks in store.\n";
+            cout << "\nThere are no stocks in store.\n";
         }
         break;
     }
@@ -67,11 +108,11 @@ bool Menu::menuSelection( int option, Store* shop )
         unsigned int numStocks = shop->totalStocks();
         if( numStocks != 1 )
         {
-            std::cout << "\nThere are " << numStocks << " stocks in our store.\n";
+            cout << "\nThere are " << numStocks << " stocks in our store.\n";
         }
         else
         {
-            std::cout << "\nThere is 1 stock in our store.\n";
+            cout << "\nThere is 1 stock in our store.\n";
         }
         break;
     }
@@ -89,14 +130,14 @@ bool Menu::menuSelection( int option, Store* shop )
         }
         else
         {
-            std::cout << "\nThere are no stocks to display.\n";
+            cout << "\nThere are no stocks to display.\n";
         }
         break;
     }
     case 6:
     {
-        std::cin.ignore();
-        std::cout.flush();
+        cin.ignore();
+        cout.flush();
         system( "clear" );
         displayMenu();
         break;
@@ -107,84 +148,81 @@ bool Menu::menuSelection( int option, Store* shop )
     }
     default:
     {
-        std::cout << "\nInvalid selection please try again.\n";
+        cout << "\nInvalid selection please try again.\n";
         break;
     }
     }
     return true;
 }
 
-//enter goods information
 void Menu::addStockInformation( Store* shop )
 {
     unsigned int code_number = 0;
     unsigned int price = 0;
-    std::string stock_name, stockcode;
+    string stock_name, stockcode;
 
-    std::cin.ignore();
+    cin.ignore();
 
-    std::cout << "Please enter the stocks barcode: ";
-    std::getline( std::cin, stockcode );
+    cout << "Please enter the stocks barcode: ";
+    getline( cin, stockcode );
 
-    std::cout << "Please enter the stocks  name: ";
-    std::getline( std::cin, stock_name );
+    cout << "Please enter the stocks  name: ";
+    getline( cin, stock_name );
 
-    std::cout << "Please enter the stocks code number: ";
-    std::cin >> code_number;
+    cout << "Please enter the stocks code number: ";
+    cin >> code_number;
 
-    std::cout << "Please enter the stocks price: ";
-    std::cin >> price;
+    cout << "Please enter the stocks price: ";
+    cin >> price;
 
     Stock stock( stock_name, code_number, price );
     shop->addStock( stockcode, stock );
 }
 
-//remove goods from the store
 void Menu::removeStock( Store* shop )
 {
     unsigned int numStocks = shop->totalStocks();
     if( numStocks == 0 )
     {
-        std::cout << "\nThere are 0 stocks in store; nothing to remove.\n";
+        cout << "\nThere are 0 stocks in store; nothing to remove.\n";
         return;
     }
 
-    std::string stockcode;
+    string stockcode;
 
-    std::cin.ignore();
+    cin.ignore();
 
-    std::cout << "\nRemove stock by stock barcode\n";
-    std::cout << "Enter the stocks stock barcode: ";
+    cout << "\nRemove stock by stock barcode\n";
+    cout << "Enter the stocks stock barcode: ";
 
-    std::getline( std::cin, stockcode );
+    getline( cin, stockcode );
     shop->removeStock( stockcode );
 }
 
-//display goods information on the console
 void Menu::displayStock( Store* shop )
 {
     unsigned int numStocks = shop->totalStocks();
     if( numStocks == 0 )
     {
-        std::cout << "\nThere are 0 stocks in the store; nothing to display.\n";
+        cout << "\nThere are 0 stocks in the store; nothing to display.\n";
         return;
     }
 
-    std::string stockcode;
+    string stockcode;
 
-    std::cin.ignore();
+    cin.ignore();
 
-    std::cout << "\nFind stock by stock barcode\n";
-    std::cout << "Enter the stocks stock code: ";
+    cout << "\nFind stock by stock barcode\n";
+    cout << "Enter the stocks stock code: ";
 
-    std::getline( std::cin, stockcode );
+    getline( cin, stockcode );
     Stock* stock = shop->findStock( stockcode );
     if( stock )
     {
-        std::cout << *stock;
+        cout << *stock;
     }
     else
     {
-        std::cout << "\nStock was not found.\n";
+        cout << "\nStock was not found.\n";
     }
 }

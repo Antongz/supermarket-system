@@ -1,29 +1,25 @@
 #include "Menu.h"
 #include <vector>
-#include <fstream>
 
 using namespace std;
 
-
 int main()
 {
-    Store shop; //create a store 'shop'
-    Store* shop1;
-    shop1 = new Store;
-
-    Menu Menu;  //create a menu 'menu'
-    system("clear");
+    Store shop;
+    Menu Menu;
+    //cout << "         \033[41;1m Welcome to the Supermarket! \033[0m\n";
     cout << "*    *    *  ****  *     ****  ****      * *      ****" << endl;
     cout << " *   *   *   *     *     *     *  *     * * *     *   " << endl;
     cout << "  *  *  *    ****  *     *     *  *    *  *  *    ****" << endl;
     cout << "   * * *     *     *     *     *  *   *   *   *   *   " << endl;
     cout << "    * *      ****  ****  ****  ****  *    *    *  ****" << endl;
     Menu.welcomeMenu();
+    //Menu.displayMenu();
 
-    int option = 0; //set the defalt option
+    int option = 0;
     do
     {
-        cout << "\nChoose an option from the menu :";
+        cout << "\n ʕ•ᴥ•ʔ Choose an option from the menu ʕ•ᴥ•ʔ:";
         cin >> option;
         if( cin.fail() )
         {
@@ -37,7 +33,6 @@ int main()
     while( Menu.menuSelection( option, &shop ) );
     cout << "\nPress any key and enter to quit.\n";
     cin.get();
-    return 0;
-    delete []shop1;
-}
 
+    return 0;
+}
